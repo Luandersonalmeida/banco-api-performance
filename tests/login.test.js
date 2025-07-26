@@ -1,17 +1,21 @@
 import http from 'k6/http';
 import { sleep, check } from 'k6';
 
+const config = JSON.parse(open('../config.json'));
 
 export  const options = {
     iterations: 10,
+    thresholds: {
+      http_req_duration: ['p(90)<10', 'max<6']
+    }
 }
 
 export default function () {
-  const url = 'http://localhost:3000/login';
+  const url = `${config.K6_BASE_URL}/login`;
 
   const payload = JSON.stringify({
-    username: 'junior.lima',
-    senha: '123456',
+    username: config.K6_USERNAME,
+    senha: config.K6_PASSWORD,
   });
 
   const params = {
