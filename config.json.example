@@ -1,0 +1,5 @@
+{
+  "K6_BASE_URL": "http://localhost:3000",
+  "K6_USERNAME": "usuario",
+  "K6_PASSWORD": "senha"
+}
