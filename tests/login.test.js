@@ -4,10 +4,13 @@ import { sleep, check } from 'k6';
 const config = JSON.parse(open('../config.json'));
 
 export  const options = {
-    iterations: 10,
+    vus: 10,
+    duration: '30s',
     thresholds: {
-      http_req_duration: ['p(90)<10', 'max<6']
-    }
+      http_req_duration: ['p(90)<3000', 'max<6000'],
+      http_req_failed: ['rate<0.01']
+    },
+
 }
 
 export default function () {
